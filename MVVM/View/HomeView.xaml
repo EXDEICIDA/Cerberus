@@ -1,0 +1,319 @@
+﻿<UserControl
+    x:Class="Cerberus.MVVM.View.HomeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fa="http://schemas.fontawesome.io/icons/"
+    xmlns:local="clr-namespace:Cerberus.MVVM.View"
+    xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Cerberus.MVVM.ViewModel"
+    d:DesignHeight="650"
+    d:DesignWidth="1100"
+    Background="Transparent"
+    mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <vm:HomeViewModel />
+    </UserControl.DataContext>
+    <StackPanel>
+        <TextBlock
+            Margin="10,0,0,5"
+            HorizontalAlignment="Left"
+            FontFamily="/Fonts/Roboto-Regular.ttf"
+            FontSize="28"
+            Foreground="White"
+            Text="Discover What's Popular This Week" />
+
+        <StackPanel Orientation="Horizontal">
+            <Border
+                Width="650"
+                Height="300"
+                Margin="10"
+                Background="#5bc3ff"
+                CornerRadius="10">
+                <Grid>
+                    <!--  Image to fill the entire Border with corner radius  -->
+                    <Image
+                        Width="200"
+                        Height="250"
+                        Margin="20"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        ClipToBounds="True"
+                        Source="{Binding CurrentMoviePoster}"
+                        Stretch="Fill">
+
+                        <Image.Clip>
+                            <RectangleGeometry
+                                RadiusX="10"
+                                RadiusY="10"
+                                Rect="0,0,200,250" />
+                        </Image.Clip>
+                    </Image>
+                    <Border
+                        Width="400"
+                        Height="72"
+                        Margin="0,31,15,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="#353340"
+                        BorderBrush="#353340"
+                        BorderThickness="1"
+                        CornerRadius="10">
+                        <Grid>
+                            <!--  IMDb Rating  -->
+                            <StackPanel
+                                Margin="10"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    FontSize="15"
+                                    Foreground="White"
+                                    Text="IMDb Rating: " />
+                                <TextBlock
+                                    FontSize="15"
+                                    Foreground="White"
+                                    Text="{Binding IMDBRating}" />
+                                <fa:FontAwesome
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    Foreground="Yellow"
+                                    Icon="Star" />
+                            </StackPanel>
+
+                            <!--  Metacritic Rating  -->
+                            <StackPanel
+                                Width="176"
+                                Margin="160,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    Width="57"
+                                    FontSize="15"
+                                    Foreground="White"
+                                    Text="Director: " />
+                                <TextBlock
+                                    Width="123"
+                                    FontSize="15"
+                                    Foreground="White"
+                                    Text="{Binding CurrentMovieDirector}" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+
+
+                    <TextBox
+                        Width="400"
+                        Height="50"
+                        Margin="234,116,16,134"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Foreground="White"
+                        IsReadOnly="True"
+                        Padding="10"
+                        Style="{StaticResource GenreTextBox}"
+                        Text="{Binding CurrentMovieGenre}" />
+
+                    <!--  TextBox overlay  -->
+                    <TextBox
+                        Width="400"
+                        Height="100"
+                        Margin="226,0,6,21"
+                        Padding="10"
+                        VerticalAlignment="Bottom"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        FontFamily="Segoe UI"
+                        FontSize="14"
+                        Foreground="White"
+                        IsReadOnly="True"
+                        Style="{StaticResource SlideShowTextBox}"
+                        Text="{Binding CurrentMoviePlot}"
+                        TextWrapping="Wrap"
+                        VerticalScrollBarVisibility="Auto" />
+
+                </Grid>
+            </Border>
+
+
+
+
+
+            <Border
+                Width="391"
+                Height="300"
+                Margin="30,0,0,0"
+                CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Offset="0.0" Color="#ffc554" />
+                        <GradientStop Offset="1" Color="#ffb73a" />
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <lvc:CartesianChart
+                    Margin="3"
+                    LegendLocation="Right"
+                    Series="{Binding GenreSeries}" >
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Genres Watched" FontSize="14" Foreground="Black"  FontWeight="Bold"/>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Count"  FontSize="14" Foreground="Black" FontWeight="Bold"/>
+                    </lvc:CartesianChart.AxisY>
+                    
+                </lvc:CartesianChart>
+
+            </Border>
+
+
+
+        </StackPanel>
+
+        <StackPanel>
+            <TextBlock
+                Margin="10,0,0,10"
+                HorizontalAlignment="Left"
+                FontSize="20"
+                Foreground="White"
+                Text="Keep Track Of Your Media" />
+
+        </StackPanel>
+
+        <Grid>
+            <Grid.Resources>
+                <!--  Define LinearGradientBrush for gradient effect  -->
+                <LinearGradientBrush x:Key="ActionGradient" StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Offset="0" Color="#FF6C3483" />
+                    <GradientStop Offset="1" Color="#FF9B59B6" />
+                </LinearGradientBrush>
+
+                <LinearGradientBrush x:Key="DramaGradient" StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Offset="0" Color="#FFA93226" />
+                    <GradientStop Offset="1" Color="#FFD98880" />
+                </LinearGradientBrush>
+
+                <LinearGradientBrush x:Key="ComedyGradient" StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Offset="0" Color="#072E33" />
+                    <GradientStop Offset="1" Color="#0c7078" />
+                </LinearGradientBrush>
+
+                <LinearGradientBrush x:Key="SciFiGradient" StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Offset="0" Color="#FF1F618D" />
+                    <GradientStop Offset="1" Color="#FF76D7C4" />
+                </LinearGradientBrush>
+
+                <LinearGradientBrush x:Key="FantasyGradient" StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Offset="0" Color="#FFAF601A" />
+                    <GradientStop Offset="1" Color="#FFF5B041" />
+                </LinearGradientBrush>
+
+                <LinearGradientBrush x:Key="ThrillerGradient" StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Offset="0" Color="#9f025A" />
+                    <GradientStop Offset="1" Color="#F9C929" />
+                </LinearGradientBrush>
+
+                <LinearGradientBrush x:Key="HorrorGradient" StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Offset="0" Color="#38A2D7" />
+                    <GradientStop Offset="1" Color="#561139" />
+                </LinearGradientBrush>
+
+                <LinearGradientBrush x:Key="AdventureGradient" StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Offset="0" Color="#718355" />
+                    <GradientStop Offset="1" Color="#87986A" />
+                </LinearGradientBrush>
+
+                <!--  Define a Style for the buttons  -->
+                <Style x:Key="GradientButtonStyle" TargetType="Button">
+                    <Setter Property="Background" Value="{StaticResource ActionGradient}" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Margin" Value="5" />
+                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Grid.Resources>
+
+            <!--  Use a UniformGrid to layout the buttons  -->
+            <UniformGrid
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Columns="4"
+                Rows="2">
+                <!--  Buttons for each genre  -->
+                <Button
+                    Width="270"
+                    Height="100"
+                    Background="{StaticResource ActionGradient}"
+                    Command="{Binding LoadMoviesCommand}"
+                    CommandParameter="Action"
+                    Content="Action"
+                    Style="{StaticResource GradientButtonStyle}" />
+                <Button
+                    Background="{StaticResource DramaGradient}"
+                    Command="{Binding LoadMoviesCommand}"
+                    CommandParameter="Drama"
+                    Content="Drama"
+                    Style="{StaticResource GradientButtonStyle}" />
+                <Button
+                    Background="{StaticResource ComedyGradient}"
+                    Command="{Binding LoadMoviesCommand}"
+                    CommandParameter="Comedy"
+                    Content="Comedy"
+                    Style="{StaticResource GradientButtonStyle}" />
+                <Button
+                    Background="{StaticResource SciFiGradient}"
+                    Command="{Binding LoadMoviesCommand}"
+                    CommandParameter="Sci-Fi"
+                    Content="Sci-Fi"
+                    Style="{StaticResource GradientButtonStyle}" />
+
+                <Button
+                    Background="{StaticResource FantasyGradient}"
+                    Command="{Binding LoadMoviesCommand}"
+                    CommandParameter="Fantasy"
+                    Content="Fantasy"
+                    Style="{StaticResource GradientButtonStyle}" />
+                <Button
+                    Background="{StaticResource ThrillerGradient}"
+                    Command="{Binding LoadMoviesCommand}"
+                    CommandParameter="Thriller"
+                    Content="Thriller"
+                    Style="{StaticResource GradientButtonStyle}" />
+                <Button
+                    Background="{StaticResource HorrorGradient}"
+                    Command="{Binding LoadMoviesCommand}"
+                    CommandParameter="Horror"
+                    Content="Horror"
+                    Style="{StaticResource GradientButtonStyle}" />
+                <Button
+                    Background="{StaticResource AdventureGradient}"
+                    Command="{Binding LoadMoviesCommand}"
+                    CommandParameter="Adventure"
+                    Content="Adventure"
+                    Style="{StaticResource GradientButtonStyle}" />
+            </UniformGrid>
+
+
+        </Grid>
+    </StackPanel>
+</UserControl>

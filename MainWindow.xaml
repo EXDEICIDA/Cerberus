@@ -1,0 +1,191 @@
+﻿<Window
+    x:Class="Cerberus.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:Cerberus.MVVM.View"
+    xmlns:viewModel="clr-namespace:Cerberus.MVVM.ViewModel"
+    Width="1350"
+    Height="750"
+  
+    MinWidth="650"
+    MinHeight="700"
+    AllowsTransparency="True"
+   
+    Icon="Resources/Project-icon/movicon.ico"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="5" />
+    </WindowChrome.WindowChrome>
+
+    <Window.DataContext>
+        <viewModel:MainViewModel />
+    </Window.DataContext>
+
+
+    <Border
+        CornerRadius="5"
+        MouseDown="Border_MouseDown"
+        MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        <Border.Background>
+            <LinearGradientBrush   StartPoint="0.5,0" EndPoint="0.5,1">
+                <GradientStop Color="#272537" />
+                <GradientStop Offset="1.0" Color="#272537" />
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+
+
+
+
+            <!--  Main Content Area  -->
+            <Grid Grid.RowSpan="2" Margin="0,6,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="43*" />
+                    <ColumnDefinition Width="317*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Image
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Source="Resources/Project-icon/Liceria_.png" />
+                <TextBlock
+                    Grid.Column="0"
+                    Height="22"
+                    Margin="60,0,65,0"
+                    VerticalAlignment="Center"
+                    FontSize="18"
+                    Foreground="Wheat"
+                    Text="TrackStar" />
+
+                <!--  Maximize and Close Buttons  -->
+                <StackPanel
+                    Grid.Column="2"
+                    Margin="0,10,10,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal" />
+
+                <!--  Sidebar Radio Buttons  -->
+                <StackPanel Grid.Row="1">
+                    <RadioButton
+                        Height="50"
+                        Command="{Binding HomeViewCommand}"
+                        Content="Home"
+                        FontFamily="/Fonts/#Poppins"
+                        FontSize="14"
+                        Foreground="White"
+                        IsChecked="True"
+                        Style="{StaticResource HomeView}" />
+                    <RadioButton
+                        Height="50"
+                        Command="{Binding FeaturedViewCommand}"
+                        Content="Discover"
+                        FontSize="14"
+                        Foreground="White"
+                        Style="{StaticResource Discover}" />
+                    <RadioButton
+                        Height="50"
+                        Command="{Binding MoviesViewCommand}"
+                        Content="Movies"
+                        FontSize="14"
+                        Foreground="White"
+                        Style="{StaticResource MoviesView}" />
+                    <RadioButton
+                        Height="50"
+                        Command="{Binding ShowsViewCommand}"
+                        Content="Shows"
+                        FontSize="14"
+                        Foreground="White"
+                        Style="{StaticResource TvShowView}" />
+                    <RadioButton
+                        Height="50"
+                        Command="{Binding WatchListViewCommand}"
+                        Content="Watchlist"
+                        FontSize="14"
+                        Foreground="White"
+                        Style="{StaticResource WatchList}" />
+
+                    <RadioButton
+                        Height="50"
+                        Command="{Binding SettingsViewCommand}"
+                        Content="Settings"
+                        FontSize="14"
+                        Foreground="White"
+                        Style="{StaticResource SettingsView}" />
+                </StackPanel>
+
+
+
+                <StackPanel
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Margin="10"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal"
+                    RenderTransformOrigin="17.074,0.404">
+
+
+                    <Button
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Click="MaximizeButton_Click">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome"
+                            FontSize="25"
+                            FontWeight="Bold"
+                            Foreground="Black"
+                            Text="&#xf096;" />
+                    </Button>
+
+
+
+
+                    <!--  Close Button  -->
+                    <Button
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Click="CloseButton_Click">
+                        <Image
+                            Width="25"
+                            Height="25"
+                            Source="C:\Users\DEICIDA\source\repos\Cerberus\Resources\Icons\close.png" />
+                    </Button>
+                </StackPanel>
+
+
+
+                <!--  ContentControl for Current View  -->
+                <ContentControl
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Margin="20,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Content="{Binding CurrentView}" />
+
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
