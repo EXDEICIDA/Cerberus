@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewModel="clr-namespace:Cerberus.MVVM.ViewModel"
-
              xmlns:local="clr-namespace:Cerberus.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="675" d:DesignWidth="1100">
@@ -13,7 +12,6 @@
         <viewModel:WatchListViewModel />
     </UserControl.DataContext>
 
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -21,12 +19,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!-- Top Filters Border -->
         <Border Grid.Row="0" Width="850" Height="100" Background="#FF2E2E2E" CornerRadius="10" Padding="10" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
                 <!-- Genre ComboBox -->
                 <StackPanel>
                     <TextBlock Text="Genre" FontWeight="Bold" Foreground="White" Margin="0,0,0,5"/>
-                    <ComboBox Width="200" Height="30" Background="#FF3E3E3E" Foreground="Black" >
+                    <ComboBox Width="200" Height="30" Background="#FF3E3E3E" Foreground="Black"  >
                         <ComboBoxItem>Action</ComboBoxItem>
                         <ComboBoxItem>Drama</ComboBoxItem>
                         <ComboBoxItem>Comedy</ComboBoxItem>
@@ -82,22 +81,47 @@
             </StackPanel>
         </Border>
 
-        <!-- Space between border and ListBox -->
+        <!-- Space between border and ListView -->
         <Grid Grid.Row="1" />
 
+       
+        <!-- WatchList GridView -->
         <Grid Grid.Row="2">
             <Border Background="#FF1E1E1E" CornerRadius="10" Padding="10" Margin="20">
                 <ScrollViewer>
-                    <ListBox ItemsSource="{Binding WatchList}">
-                        <ListBox.ItemTemplate>
+                    <ListView ItemsSource="{Binding WatchList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="#FF1E1E1E" BorderThickness="0">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal" Margin="5">
-                                    <Image Source="{Binding Poster}" Width="100" Height="150" Margin="5"/>
-                                    <TextBlock Text="{Binding Title}" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0" Foreground="White"/>
-                                </StackPanel>
+                                <Border Width="140" Height="210" Background="#FF2E2E2E" CornerRadius="10" Margin="5">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="BorderBrush" Value="Transparent"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" Value="Green"/>
+                                                    <Setter Property="BorderThickness" Value="3"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <StackPanel>
+                                        <Image Source="{Binding Poster}" Stretch="UniformToFill" Height="190" Width="140" Margin="0,0,0,5">
+                                            <Image.Clip>
+                                                <RectangleGeometry Rect="0,0,140,190" RadiusX="10" RadiusY="10" />
+                                            </Image.Clip>
+                                        </Image>
+                                        <TextBlock Text="{Binding Title}" VerticalAlignment="Center" FontSize="12" Margin="5,0,0,0" Foreground="White" TextAlignment="Center" Padding="-5" TextTrimming="CharacterEllipsis" FontWeight="Bold"/>
+                                    </StackPanel>
+                                </Border>
                             </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </ScrollViewer>
             </Border>
         </Grid>

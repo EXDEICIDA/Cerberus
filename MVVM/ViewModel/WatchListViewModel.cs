@@ -21,11 +21,13 @@ namespace Cerberus.MVVM.ViewModel
         {
             var movies = _databaseModel.GetAllMovies();
             var shows = _databaseModel.GetAllShows();
+            
 
             foreach (var movie in movies)
             {
                 WatchList.Add(movie);
             }
+            
 
             foreach (var show in shows)
             {

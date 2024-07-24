@@ -205,9 +205,6 @@ namespace Cerberus.MVVM.Model
 
         }
 
-
-
-        // Method to get all movies from the database
         public ObservableCollection<Movies> GetAllMovies()
         {
             var movies = new ObservableCollection<Movies>();
@@ -222,20 +219,17 @@ namespace Cerberus.MVVM.Model
                     {
                         while (reader.Read())
                         {
-                            // Handle the Decade field and convert it to a ReleaseDate if necessary
-                            string decade = reader.IsDBNull(reader.GetOrdinal("Decade")) ? string.Empty : reader.GetString(reader.GetOrdinal("Decade"));
-                            DateTime? releaseDate = ConvertDecadeToReleaseDate(decade);
-
-                            movies.Add(new Movies
+                            var movie = new Movies
                             {
-                                Id = reader.GetString(reader.GetOrdinal("Id")),
-                                Title = reader.GetString(reader.GetOrdinal("Title")),
-                                Poster = reader.GetString(reader.GetOrdinal("Poster")),
-                                Plot = reader.GetString(reader.GetOrdinal("Plot")),
-                                Genre = reader.GetString(reader.GetOrdinal("Genre")),
-                                ReleaseDate = releaseDate,
-                                ImdbRating = reader.IsDBNull(reader.GetOrdinal("ImdbRating")) ? 0 : reader.GetDouble(reader.GetOrdinal("ImdbRating"))
-                            });
+                                Id = reader.GetInt32(0).ToString(),
+                                Title = reader.GetString(1),
+                                Poster = reader.GetString(2),
+                                Plot = reader.GetString(3),
+                                Genre = reader.GetString(4),
+                                ReleaseDate = reader.IsDBNull(5) ? (DateTime?)null : ConvertYearToDateTime(reader.GetString(5)),
+                                ImdbRating = reader.IsDBNull(6) ? 0 : reader.GetDouble(6)
+                            };
+                            movies.Add(movie);
                         }
                     }
                 }
@@ -244,22 +238,18 @@ namespace Cerberus.MVVM.Model
             return movies;
         }
 
-        private DateTime? ConvertDecadeToReleaseDate(string decade)
+
+
+        private DateTime? ConvertYearToDateTime(string yearString)
         {
-            // Assuming decade is something like "1990s", extract the year or return null
-            if (string.IsNullOrEmpty(decade) || decade.Length < 4)
+            if (int.TryParse(yearString, out int year))
             {
-                return null;
+                return new DateTime(year, 1, 1);
             }
-
-            int year;
-            if (int.TryParse(decade.Substring(0, 4), out year))
-            {
-                return new DateTime(year, 1, 1); // Return the first day of that year as ReleaseDate
-            }
-
             return null;
         }
+
+
 
         public ObservableCollection<Show> GetAllShows()
         {

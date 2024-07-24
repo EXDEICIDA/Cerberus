@@ -109,11 +109,6 @@ namespace Cerberus.MVVM.Model
 
             [JsonProperty("Rated")]
             public string Rated { get; set; }
-
-
-
-
-
         }
     }
 
@@ -128,7 +123,7 @@ namespace Cerberus.MVVM.Model
         public double ImdbRating { get; set; }
         public string Director { get; set; }
         public string Language { get; set; } = string.Empty;
-        public string Country {  get; set; } = string.Empty;
+        public string Country { get; set; } = string.Empty;
         public string Rated { get; set; } = string.Empty;
 
         [JsonIgnore]
