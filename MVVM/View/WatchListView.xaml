@@ -1,12 +1,14 @@
-﻿<UserControl x:Class="Cerberus.MVVM.View.WatchListView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:viewModel="clr-namespace:Cerberus.MVVM.ViewModel"
-             xmlns:local="clr-namespace:Cerberus.MVVM.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="675" d:DesignWidth="1100">
+﻿<UserControl
+    x:Class="Cerberus.MVVM.View.WatchListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Cerberus.MVVM.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="clr-namespace:Cerberus.MVVM.ViewModel"
+    d:DesignHeight="675"
+    d:DesignWidth="1100"
+    mc:Ignorable="d">
 
     <UserControl.DataContext>
         <viewModel:WatchListViewModel />
@@ -14,82 +16,138 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- Top Filters Border -->
-        <Border Grid.Row="0" Width="850" Height="100" Background="#434C59" CornerRadius="10" Padding="10" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
-                <!-- Genre ComboBox -->
+        <!--  Top Filters Border  -->
+        <Border
+            Grid.Row="0"
+            Width="1000"
+            Height="100"
+            Margin="10"
+            Padding="10"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Background="#434C59"
+            CornerRadius="10">
+            <StackPanel
+                Margin="20"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <!--  Genre ComboBox  -->
                 <StackPanel>
-                    <TextBlock Text="Genre" FontWeight="Bold" Foreground="White" Margin="0,0,0,5"/>
-                    <ComboBox Width="200" Height="30" Background="#FF3E3E3E" Foreground="Black"  >
-                        <ComboBoxItem>Action</ComboBoxItem>
-                        <ComboBoxItem>Drama</ComboBoxItem>
-                        <ComboBoxItem>Comedy</ComboBoxItem>
-                        <ComboBoxItem>Adventure</ComboBoxItem>
-                        <ComboBoxItem>Crime</ComboBoxItem>
-                        <ComboBoxItem>Animation</ComboBoxItem>
-                        <ComboBoxItem>Adventure</ComboBoxItem>
-                        <ComboBoxItem>Documentary</ComboBoxItem>
-                        <ComboBoxItem>Fantasy</ComboBoxItem>
-                        <ComboBoxItem>Family</ComboBoxItem>
-                        <ComboBoxItem>History</ComboBoxItem>
-                        <ComboBoxItem>Horror</ComboBoxItem>
-                        <ComboBoxItem>Romance</ComboBoxItem>
-                        <ComboBoxItem>Sci-Fi</ComboBoxItem>
-                        <ComboBoxItem>Thriller</ComboBoxItem>
-                        <!-- Add more genres as needed -->
+                    <TextBlock
+                        Margin="0,0,0,5"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Text="Genre" />
+                    <ComboBox
+                        Width="200"
+                        Height="30"
+                        Background="#FF3E3E3E"
+                        Foreground="Black"
+                         SelectedItem="{Binding SelectedGenre, Mode=TwoWay}">
+                        <ComboBoxItem Content="All" />
+                        <ComboBoxItem Content="Action" />
+                        <ComboBoxItem Content="Drama" />
+                        <ComboBoxItem Content="Comedy" />
+                        <ComboBoxItem Content="Adventure" />
+                        <ComboBoxItem Content="Crime" />
+                        <ComboBoxItem Content="Animation" />
+                        <ComboBoxItem Content="Documentary" />
+                        <ComboBoxItem Content="Fantasy" />
+                        <ComboBoxItem Content="Family" />
+                        <ComboBoxItem Content="History" />
+                        <ComboBoxItem Content="Horror" />
+                        <ComboBoxItem Content="Romance" />
+                        <ComboBoxItem Content="Sci-Fi" />
+                        <ComboBoxItem Content="Thriller" />
                     </ComboBox>
                 </StackPanel>
 
-                <!-- Decade ComboBox -->
+                <!--  Decade ComboBox  -->
                 <StackPanel>
-                    <TextBlock Text="Decade" FontWeight="Bold" Foreground="White" Margin="0,0,0,5"/>
-                    <ComboBox Width="200" Height="30" Background="#FF3E3E3E" Foreground="Black">
-                        <ComboBoxItem>2020s</ComboBoxItem>
-                        <ComboBoxItem>2010s</ComboBoxItem>
-                        <ComboBoxItem>2000s</ComboBoxItem>
-                        <ComboBoxItem>1990s</ComboBoxItem>
-                        <ComboBoxItem>1980s</ComboBoxItem>
-                        <ComboBoxItem>1970s</ComboBoxItem>
-                        <ComboBoxItem>1960s</ComboBoxItem>
-                        <ComboBoxItem>1950s</ComboBoxItem>
-                        <ComboBoxItem>1940s</ComboBoxItem>
-                        <ComboBoxItem>1930s</ComboBoxItem>
-                        <ComboBoxItem>1920s</ComboBoxItem>
-                        <ComboBoxItem>1910s</ComboBoxItem>
-                        <ComboBoxItem>1900s</ComboBoxItem>
-                        <!-- Add more decades as needed -->
+                    <TextBlock
+                        Margin="0,0,0,5"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Text="Decade" />
+                    <ComboBox
+                        Width="200"
+                        Height="30"
+                        Background="#FF3E3E3E"
+                        Foreground="Black"
+                        SelectedItem="{Binding SelectedDecade, Mode=TwoWay}">
+                        <ComboBoxItem Content="All" />
+                        <ComboBoxItem Content="2020s" />
+                        <ComboBoxItem Content="2010s" />
+                        <ComboBoxItem Content="2000s" />
+                        <ComboBoxItem Content="1990s" />
+                        <ComboBoxItem Content="1980s" />
+                        <ComboBoxItem Content="1970s" />
+                        <ComboBoxItem Content="1960s" />
+                        <ComboBoxItem Content="1950s" />
+                        <ComboBoxItem Content="1940s" />
+                        <ComboBoxItem Content="1930s" />
+                        <ComboBoxItem Content="1920s" />
+                        <ComboBoxItem Content="1910s" />
+                        <ComboBoxItem Content="1900s" />
                     </ComboBox>
                 </StackPanel>
 
-                <!-- Average Rating ComboBox -->
+                <!--  Average Rating ComboBox  -->
                 <StackPanel>
-                    <TextBlock Text="Average Rating" FontWeight="Bold" Foreground="White" Margin="0,0,0,5"/>
-                    <ComboBox Width="200" Height="30" Background="#FF3E3E3E" Foreground="Black" >
-                        <ComboBoxItem>1-2</ComboBoxItem >
-                        <ComboBoxItem>3-4</ComboBoxItem>
-                        <ComboBoxItem>5-6</ComboBoxItem>
-                        <ComboBoxItem>7-8</ComboBoxItem>
-                        <ComboBoxItem>9-10</ComboBoxItem>
-                        <!-- Add more rating ranges as needed -->
+                    <TextBlock
+                        Margin="0,0,0,5"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Text="Average Rating" />
+                    <ComboBox
+                        Width="200"
+                        Height="30"
+                        Background="#FF3E3E3E"
+                        Foreground="Black"
+                        SelectedItem="{Binding SelectedRating, Mode=TwoWay}">
+                        <ComboBoxItem Content="All" />
+                        <ComboBoxItem Content="1-2" />
+                        <ComboBoxItem Content="3-4" />
+                        <ComboBoxItem Content="5-6" />
+                        <ComboBoxItem Content="7-8" />
+                        <ComboBoxItem Content="9-10" />
                     </ComboBox>
                 </StackPanel>
+                <TextBox
+                    x:Name="SearchTextBox"
+                    Margin="30,0,0,0"
+                    Padding="5"
+                    VerticalAlignment="Center"
+                    KeyDown="SearchTextBox_KeyDown"
+                    Style="{StaticResource ModernTextboxForWatch}"
+                    Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
+
         </Border>
 
-        <!-- Space between border and ListView -->
+        <!--  Space between border and ListView  -->
         <Grid Grid.Row="1" />
 
-       
-        <!-- WatchList GridView -->
+
+        <!--  WatchList GridView  -->
         <Grid Grid.Row="2">
-            <Border Background="#434C59" CornerRadius="10" Padding="10" Margin="20">
+            <Border
+                Margin="20"
+                Padding="10"
+                Background="#434C59"
+                CornerRadius="10">
                 <ScrollViewer>
-                    <ListView ItemsSource="{Binding WatchList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="#434C59" BorderThickness="0">
+                    <ListView
+                        Background="#434C59"
+                        BorderThickness="0"
+                        ItemsSource="{Binding FilteredWatchList}"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel />
@@ -97,26 +155,48 @@
                         </ListView.ItemsPanel>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Border Width="140" Height="210" Background="#FF2E2E2E" CornerRadius="10" Margin="5">
+                                <Border
+                                    Width="140"
+                                    Height="210"
+                                    Margin="5"
+                                    Background="#FF2E2E2E"
+                                    CornerRadius="10">
                                     <Border.Style>
                                         <Style TargetType="Border">
-                                            <Setter Property="BorderBrush" Value="Transparent"/>
-                                            <Setter Property="BorderThickness" Value="0"/>
+                                            <Setter Property="BorderBrush" Value="Transparent" />
+                                            <Setter Property="BorderThickness" Value="0" />
                                             <Style.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="BorderBrush" Value="Green"/>
-                                                    <Setter Property="BorderThickness" Value="3"/>
+                                                    <Setter Property="BorderBrush" Value="Green" />
+                                                    <Setter Property="BorderThickness" Value="3" />
                                                 </Trigger>
                                             </Style.Triggers>
                                         </Style>
                                     </Border.Style>
                                     <StackPanel>
-                                        <Image Source="{Binding Poster}" Stretch="UniformToFill" Height="190" Width="140" Margin="0,0,0,5">
+                                        <Image
+                                            Width="140"
+                                            Height="190"
+                                            Margin="0,0,0,5"
+                                            Source="{Binding Poster}"
+                                            Stretch="UniformToFill">
                                             <Image.Clip>
-                                                <RectangleGeometry Rect="0,0,140,190" RadiusX="10" RadiusY="10" />
+                                                <RectangleGeometry
+                                                    RadiusX="10"
+                                                    RadiusY="10"
+                                                    Rect="0,0,140,190" />
                                             </Image.Clip>
                                         </Image>
-                                        <TextBlock Text="{Binding Title}" VerticalAlignment="Center" FontSize="12" Margin="5,0,0,0" Foreground="White" TextAlignment="Center" Padding="-5" TextTrimming="CharacterEllipsis" FontWeight="Bold"/>
+                                        <TextBlock
+                                            Margin="5,0,0,0"
+                                            Padding="-5"
+                                            VerticalAlignment="Center"
+                                            FontSize="12"
+                                            FontWeight="Bold"
+                                            Foreground="White"
+                                            Text="{Binding Title}"
+                                            TextAlignment="Center"
+                                            TextTrimming="CharacterEllipsis" />
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>

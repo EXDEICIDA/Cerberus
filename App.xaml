@@ -686,6 +686,57 @@
                 </Setter>
             </Style>
 
+            <Style x:Key="ModernTextboxForWatch" TargetType="{x:Type TextBox}">
+                <Setter Property="Foreground" Value="#CFCFCF" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TextBox}">
+                            <Border
+                     Width="250"
+                     Height="40"
+                     Background="#353340"
+                     CornerRadius="10">
+                                <Grid>
+                                    <ScrollViewer
+                             x:Name="PART_ContentHost"
+                             Margin="1"
+                             Padding="5"
+                             VerticalContentAlignment="Center"
+                             Background="Transparent"
+                             Foreground="#CFCFCF" />
+                                    <TextBlock
+                             x:Name="PlaceholderText"
+                             Margin="10,0,0,0"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                             FontSize="20"
+                             Foreground="DarkGray"
+                             IsHitTestVisible="False"
+                             Text="Search">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Visibility" Value="Hidden" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource Self}}" Value="0">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter TargetName="PlaceholderText" Property="Visibility" Value="Hidden" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
 
 
             <Style x:Key="ModernButton" TargetType="{x:Type Button}">
