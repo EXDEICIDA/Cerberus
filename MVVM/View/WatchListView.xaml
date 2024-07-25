@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fa="http://schemas.fontawesome.io/icons/"
     xmlns:local="clr-namespace:Cerberus.MVVM.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="clr-namespace:Cerberus.MVVM.ViewModel"
@@ -49,7 +50,7 @@
                         Height="30"
                         Background="#FF3E3E3E"
                         Foreground="Black"
-                         SelectedItem="{Binding SelectedGenre, Mode=TwoWay}">
+                        SelectedItem="{Binding SelectedGenre, Mode=TwoWay}">
                         <ComboBoxItem Content="All" />
                         <ComboBoxItem Content="Action" />
                         <ComboBoxItem Content="Drama" />
@@ -119,14 +120,42 @@
                         <ComboBoxItem Content="9-10" />
                     </ComboBox>
                 </StackPanel>
-                <TextBox
-                    x:Name="SearchTextBox"
-                    Margin="30,0,0,0"
-                    Padding="5"
-                    VerticalAlignment="Center"
-                    KeyDown="SearchTextBox_KeyDown"
-                    Style="{StaticResource ModernTextboxForWatch}"
-                    Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+                <Grid Margin="30,0,0,0" VerticalAlignment="Center">
+                    <TextBox
+                        x:Name="SearchTextBox"
+                        Padding="25,5,5,5"
+                        KeyDown="SearchTextBox_KeyDown"
+                        Style="{StaticResource ModernTextboxForWatch}"
+                        Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        Margin="25,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Foreground="Gray"
+                        IsHitTestVisible="False"
+                        Text="Search...">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=SearchTextBox}" Value="">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <fa:FontAwesome
+                        Width="12"
+                        Height="12"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Foreground="Gray"
+                        Icon="Search" />
+                </Grid>
             </StackPanel>
 
         </Border>

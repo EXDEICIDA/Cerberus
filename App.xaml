@@ -693,27 +693,27 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type TextBox}">
                             <Border
-                     Width="250"
-                     Height="40"
-                     Background="#353340"
-                     CornerRadius="10">
+                                Width="250"
+                                Height="40"
+                                Background="#353340"
+                                CornerRadius="10">
                                 <Grid>
                                     <ScrollViewer
-                             x:Name="PART_ContentHost"
-                             Margin="1"
-                             Padding="5"
-                             VerticalContentAlignment="Center"
-                             Background="Transparent"
-                             Foreground="#CFCFCF" />
+                                        x:Name="PART_ContentHost"
+                                        Margin="1"
+                                        Padding="5"
+                                        VerticalContentAlignment="Center"
+                                        Background="Transparent"
+                                        Foreground="#CFCFCF" />
                                     <TextBlock
-                             x:Name="PlaceholderText"
-                             Margin="10,0,0,0"
-                             HorizontalAlignment="Left"
-                             VerticalAlignment="Center"
-                             FontSize="20"
-                             Foreground="DarkGray"
-                             IsHitTestVisible="False"
-                             Text="Search">
+                                        x:Name="PlaceholderText"
+                                        Margin="10,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        FontSize="20"
+                                        Foreground="DarkGray"
+                                        IsHitTestVisible="False"
+                                        Text="Search">
                                         <TextBlock.Style>
                                             <Style TargetType="{x:Type TextBlock}">
                                                 <Setter Property="Visibility" Value="Hidden" />
@@ -770,19 +770,19 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <Border
-                      Width="100"
-                      Height="25"
-                     Background="#007ACC" 
-                      CornerRadius="10">
+                                Width="100"
+                                Height="25"
+                                Background="#007ACC"
+                                CornerRadius="10">
                                 <Grid>
                                     <Rectangle StrokeThickness="1" />
                                     <TextBlock
-                              Margin="1"
-                              Padding="5"
-                              HorizontalAlignment="Center"
-                              VerticalAlignment="Center"
-                              Foreground="#CFCFCF"
-                              Text="{TemplateBinding Content}" />
+                                        Margin="1"
+                                        Padding="5"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="#CFCFCF"
+                                        Text="{TemplateBinding Content}" />
                                 </Grid>
                             </Border>
                         </ControlTemplate>
@@ -960,17 +960,17 @@
                         <ControlTemplate TargetType="Button">
                             <Grid>
                                 <Ellipse
-                         x:Name="ellipse"
-                         Width="33"
-                         Height="33"
-                         Fill="LightGray" />
+                                    x:Name="ellipse"
+                                    Width="33"
+                                    Height="33"
+                                    Fill="LightGray" />
                                 <fa:ImageAwesome
-                         Width="16"
-                         Height="16"
-                         HorizontalAlignment="Center"
-                         VerticalAlignment="Center"
-                         Foreground="Black"
-                         Icon="Plus" />
+                                    Width="16"
+                                    Height="16"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="Black"
+                                    Icon="Plus" />
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
@@ -989,9 +989,7 @@
             <Style x:Key="RadiusButtonStyle" TargetType="Button">
                 <Setter Property="Width" Value="180" />
                 <Setter Property="Height" Value="30" />
-                <Setter Property="Margin" Value="5">
-                    
-                </Setter>
+                <Setter Property="Margin" Value="5" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
@@ -1179,14 +1177,14 @@
                 </Setter>
             </Style>
 
-            <!-- Style for the Ellipse-shaped Button -->
+            <!--  Style for the Ellipse-shaped Button  -->
             <Style x:Key="EllipseButtonStyle" TargetType="Button">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
                             <Grid>
-                                <Ellipse  x:Name="ellipseInfo" Fill="#007ACC"/>
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Ellipse x:Name="ellipseInfo" Fill="#007ACC" />
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
@@ -1230,7 +1228,91 @@
                 <view:ShowsView />
             </DataTemplate>
 
+            <Style x:Key="RoundedComboBoxStyle" TargetType="{x:Type ComboBox}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ComboBox}">
+                            <Grid>
+                                <Border
+                                    x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="30" />
+                                        </Grid.ColumnDefinitions>
+                                        <ContentPresenter
+                                            Margin="8,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Content="{TemplateBinding SelectionBoxItem}"
+                                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" />
+                                        <ToggleButton Grid.Column="1" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    </Grid>
+                                </Border>
+                                <Popup
+                                    IsOpen="{TemplateBinding IsDropDownOpen}"
+                                    Placement="Bottom"
+                                    PopupAnimation="Slide">
+                                    <Border
+                                        x:Name="DropDownBorder"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="1"
+                                        CornerRadius="0,0,10,10">
+                                        <ScrollViewer SnapsToDevicePixels="True">
+                                            <StackPanel IsItemsHost="True" />
+                                        </ScrollViewer>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
+            <Style x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                            <Border
+                                x:Name="templateRoot"
+                                Background="Transparent"
+                                BorderThickness="0">
+                                <Path
+                                    x:Name="Arrow"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"
+                                    Fill="Black" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+
+
+            <Style x:Key="RoundedComboBoxStyleV2" TargetType="{x:Type ComboBox}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ComboBox">
+                            <Grid>
+                                <Border
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="10" />
+                                <ComboBox Margin="1" SnapsToDevicePixels="True" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
 
 
