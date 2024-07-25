@@ -1,82 +1,72 @@
-﻿using Cerberus.Core;
-using Cerberus.MVVM.Model;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Cerberus.Core;
+using Cerberus.MVVM.Model;
 
 namespace Cerberus.MVVM.ViewModel
 {
     public class FeaturedViewModel : ObservableObject
     {
         private readonly DataModelService _dataModelService;
-        
+        public ObservableCollection<Movie> Movies { get; set; }
+        public ObservableCollection<Show> Shows { get; set; }
 
-        private ObservableCollection<Movie> _movies;
-        private string _searchQuery;
-        private bool _isLoading;
-        private string _errorMessage;
-
-        public ICommand LoadMoviesCommand { get; }
-        
+        public ICommand WatchTrailerCommand { get; }
 
         public FeaturedViewModel()
         {
-            _dataModelService = new DataModelService(); // Your existing service for fetching movie data
-
+            _dataModelService = new DataModelService();
             Movies = new ObservableCollection<Movie>();
-            LoadMoviesCommand = new RelayCommand(async _ => await LoadMovies());
+            Shows = new ObservableCollection<Show>();
+            WatchTrailerCommand = new RelayCommand(WatchTrailer);
+            LoadMoviesAsync();
+            LoadSeriesAsync();
         }
 
-        public ObservableCollection<Movie> Movies
+        private async Task LoadMoviesAsync()
         {
-            get => _movies;
-            set => SetProperty(ref _movies, value);
-        }
-
-        public string SearchQuery
-        {
-            get => _searchQuery;
-            set => SetProperty(ref _searchQuery, value);
-        }
-
-        public bool IsLoading
-        {
-            get => _isLoading;
-            set => SetProperty(ref _isLoading, value);
-        }
-
-        public string ErrorMessage
-        {
-            get => _errorMessage;
-            set => SetProperty(ref _errorMessage, value);
-        }
-
-        public async Task LoadMovies()
-        {
-            try
+            var movies = await _dataModelService.GetPopularMoviesThisWeekAsync();
+            foreach (var movie in movies)
             {
-                IsLoading = true;
-                var movies = await _dataModelService.SearchMoviesAsync(SearchQuery);
-
-                Movies.Clear();
-                foreach (var movie in movies)
+                var omdbMovie = await _dataModelService.GetMovieDetailsAsync(movie.Title);
+                if (omdbMovie != null)
                 {
-                    Movies.Add(movie);
+                    omdbMovie.TrailerUrl = await _dataModelService.GetMovieTrailerAsync(movie.Id);
+                    Movies.Add(omdbMovie);
                 }
-                ErrorMessage = "";
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = "Failed to load movies: " + ex.Message;
-            }
-            finally
-            {
-                IsLoading = false;
             }
         }
 
-       
+        private async Task LoadSeriesAsync()
+        {
+            var shows = await _dataModelService.GetPopularSeriesThisWeekAsync();
+            foreach (var serie in shows)
+            {
+                var tmdbShow = await _dataModelService.GetSerieDetailsAsync(serie.Title);
+                if (tmdbShow != null)
+                {
+                    tmdbShow.TrailerUrl = await _dataModelService.GetSerieTrailerAsync(serie.Id);
+                    Shows.Add(tmdbShow);
+                }
+            }
+        }
 
+
+
+        private void WatchTrailer(object trailerUrlObj)
+        {
+            var trailerUrl = trailerUrlObj as string;
+            if (!string.IsNullOrEmpty(trailerUrl))
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = trailerUrl,
+                    UseShellExecute = true
+                });
+            }
+        }
     }
 }

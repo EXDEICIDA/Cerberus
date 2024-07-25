@@ -176,10 +176,13 @@ namespace Cerberus.MVVM.Model
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Poster { get; set; } = string.Empty;
+        public string PosterPath { get; set; } = string.Empty; // Ensure this matches the binding in XAML
+
         public string Plot { get; set; } = string.Empty;
         public string Genre { get; set; } = string.Empty;
         public int Decade { get; set; }
         public double ImdbRating { get; set; }
+        public string TrailerUrl { get; set; }
     }
 
     public class Episode

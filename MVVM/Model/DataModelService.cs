@@ -60,6 +60,18 @@ namespace Cerberus.MVVM.Model
             return movies;
         }
 
+        public async Task<string> GetMovieTrailerAsync(int tmdbMovieId)
+        {
+            var request = new RestRequest($"movie/{tmdbMovieId}/videos", Method.Get);
+            request.AddParameter("api_key", _tmdbApiKey);
+
+            var response = await _tmdbClient.ExecuteAsync<TmdbTrailerResult>(request);
+            var trailer = response.Data?.Results?.FirstOrDefault(t => t.Type == "Trailer" && t.Site == "YouTube");
+
+            return trailer != null ? $"https://www.youtube.com/watch?v={trailer.Key}" : string.Empty;
+        }
+
+
         public async Task<List<Movie>> SearchMoviesByGenreAsync(string genre)
         {
             // Step 1: Get the list of movies by genre from TMDb
@@ -90,7 +102,61 @@ namespace Cerberus.MVVM.Model
             return omdbMovies;
         }
 
+        public async Task<string> GetSerieTrailerAsync(int tmdbSerieId)
+        {
+            var request = new RestRequest($"tv/{tmdbSerieId}/videos", Method.Get);
+            request.AddParameter("api_key", _tmdbApiKey);
 
+            var response = await _tmdbClient.ExecuteAsync<TmdbTrailerResult>(request);
+            var trailer = response.Data?.Results?.FirstOrDefault(t => t.Type == "Trailer" && t.Site == "YouTube");
+
+            return trailer != null ? $"https://www.youtube.com/watch?v={trailer.Key}" : string.Empty;
+        }
+
+
+        public async Task<List<Show>> GetPopularSeriesThisWeekAsync()
+        {
+            var request = new RestRequest("trending/tv/week", Method.Get);
+            request.AddParameter("api_key", _tmdbApiKey);
+
+            var response = await _tmdbClient.ExecuteAsync<TmdbShowSearchResult>(request);
+            var shows = response.Data?.Results ?? new List<Show>();
+
+            return shows;
+        }
+
+        public async Task<Show> GetSerieDetailsFromTMDbAsync(int tmdbSerieId)
+        {
+            var request = new RestRequest($"tv/{tmdbSerieId}", Method.Get);
+            request.AddParameter("api_key", _tmdbApiKey);
+
+            var response = await _tmdbClient.ExecuteAsync<Show>(request);
+            return response.Data;
+        }
+
+        public async Task<Show> GetSerieDetailsAsync(string title)
+        {
+            var request = new RestRequest("", Method.Get);
+            request.AddParameter("apikey", _apiKey);
+            request.AddParameter("t", title);
+            request.AddParameter("type", "series"); // Specify type as series
+
+            var response = await _client.ExecuteAsync<Show>(request);
+            return response.Data;
+        }
+
+    }
+
+    public class TmdbTrailerResult
+    {
+        public List<Trailer> Results { get; set; }
+    }
+
+    public class Trailer
+    {
+        public string Key { get; set; }
+        public string Site { get; set; }
+        public string Type { get; set; }
     }
 
     public class TmdbShowSearchResult
@@ -111,6 +177,7 @@ namespace Cerberus.MVVM.Model
  
     public class Movie
     {
+        public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Poster { get; set; } = string.Empty;
         public string Genre { get; set; } = string.Empty;
@@ -118,7 +185,10 @@ namespace Cerberus.MVVM.Model
         public string Director { get; set; } = string.Empty;
         public DateTime ReleaseDate { get; set; }
         public double IMDbRating { get; set; }
+        public string TrailerUrl { get; set; }
     }
+
+   
 
    
 }

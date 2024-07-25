@@ -85,6 +85,7 @@
                 <TextBox
                     x:Name="ShowSearchBox"
                     Width="450"
+                    Padding="5"
                     Margin="5"
                     KeyDown="ShowSearchBox_KeyDown"
                     Style="{StaticResource ModernTextbox}"

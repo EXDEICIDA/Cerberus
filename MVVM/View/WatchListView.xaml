@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <!-- Top Filters Border -->
-        <Border Grid.Row="0" Width="850" Height="100" Background="#FF2E2E2E" CornerRadius="10" Padding="10" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10">
+        <Border Grid.Row="0" Width="850" Height="100" Background="#434C59" CornerRadius="10" Padding="10" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
                 <!-- Genre ComboBox -->
                 <StackPanel>
@@ -87,9 +87,9 @@
        
         <!-- WatchList GridView -->
         <Grid Grid.Row="2">
-            <Border Background="#FF1E1E1E" CornerRadius="10" Padding="10" Margin="20">
+            <Border Background="#434C59" CornerRadius="10" Padding="10" Margin="20">
                 <ScrollViewer>
-                    <ListView ItemsSource="{Binding WatchList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="#FF1E1E1E" BorderThickness="0">
+                    <ListView ItemsSource="{Binding WatchList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="#434C59" BorderThickness="0">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel />

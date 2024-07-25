@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows.Input;
 
 namespace Cerberus.MVVM.ViewModel
 {
-   internal class SettingsViewModel
+    internal class SettingsViewModel
     {
+        private readonly WatchListViewModel _watchListViewModel;
 
+        public ICommand ExportWatchlistCommand => _watchListViewModel.ExportWatchlistCommand;
+
+        public SettingsViewModel()
+        {
+            _watchListViewModel = new WatchListViewModel();
+        }
     }
 }

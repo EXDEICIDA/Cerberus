@@ -313,7 +313,7 @@
                     Style="{StaticResource GradientButtonStyle}" />
             </UniformGrid>
 
-
+          
         </Grid>
     </StackPanel>
 </UserControl>

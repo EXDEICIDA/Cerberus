@@ -3,12 +3,19 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fa="http://schemas.fontawesome.io/icons/"
     xmlns:local="clr-namespace:Cerberus.MVVM.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="clr-namespace:Cerberus.MVVM.ViewModel"
     d:DesignHeight="675"
     d:DesignWidth="1100"
     Background="Transparent"
     mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <viewModel:SettingsViewModel />
+        <!--  Corrected this line  -->
+    </UserControl.DataContext>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -43,15 +50,80 @@
                 Background="#333333"
                 CornerRadius="10">
                 <StackPanel>
-                    <TextBlock
-                        Margin="0,0,0,10"
-                        Foreground="White"
-                        Text="Change Background Color" />
-                    <ComboBox Width="150" >
-                        <ComboBoxItem Content="Default" Tag="#778899" />
-                        <ComboBoxItem Content="Night Mode" Tag="#272537"/>
-                    </ComboBox>
+                    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
+                            <TextBlock
+                                Grid.Column="0"
+                                Width="270"
+                                Margin="10"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                Text="Change Background Color" />
+                            <fa:FontAwesome
+                                Grid.Column="0"
+                                Margin="20"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Foreground="White"
+                                Icon="PaintBrush" />
+
+
+
+                            <ComboBox
+                                Grid.Column="1"
+                                Width="150"
+                                Margin="25,0,0,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center">
+                                <ComboBoxItem Content="Default" Tag="#778899" />
+                                <ComboBoxItem Content="Night Mode" Tag="#272537" />
+                            </ComboBox>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                Width="290"
+                                Margin="10"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                Text="Change Application Language" />
+                            <fa:FontAwesome
+                                Grid.Column="0"
+                                Margin="20"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Foreground="White"
+                                Icon="Gears" />
+                            <ComboBox
+                                Grid.Column="1"
+                                Width="150"
+                                Margin="5,0,0,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center">
+                                <ComboBoxItem Content="Default English" Tag="#778899" />
+                                <ComboBoxItem Content="French" Tag="#272537" />
+                            </ComboBox>
+                        </Grid>
+                    </StackPanel>
                 </StackPanel>
             </Border>
 
@@ -89,7 +161,42 @@
             Background="#333333"
             CornerRadius="10">
             <StackPanel>
+
                 <!--  Add content here  -->
+                <Border
+                    Width="400"
+                    Height="251"
+                    Background="#333A44"
+                    CornerRadius="10">
+                    <StackPanel Margin="5">
+                        <Button
+                            Width="auto"
+                            Height="50"
+                            Margin="5"
+                            Background="#5A6674"
+                            Content="Make this list private"
+                            Foreground="White" />
+                        <Button
+                            Height="50"
+                            Margin="5"
+                            Background="#5A6674"
+                            Content="Import films to watchlist..."
+                            Foreground="White" />
+                        <Button
+                            Height="50"
+                            Margin="5"
+                            Background="#5A6674"
+                            Command="{Binding ExportWatchlistCommand}"
+                            Content="Export watchlist"
+                            Foreground="White" />
+                        <Button
+                            Height="50"
+                            Margin="5"
+                            Background="#5A6674"
+                            Content="Clear watchlist"
+                            Foreground="White" />
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </Border>
     </Grid>
