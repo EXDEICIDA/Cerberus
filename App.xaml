@@ -25,8 +25,8 @@
                 <Setter Property="Background" Value="#E50914" />
                 <Setter Property="Foreground" Value="#FFFFFF" />
                 <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="Width" Value="90"></Setter>
-                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="Width" Value="90" />
+                <Setter Property="Height" Value="30" />
                 <Setter Property="Padding" Value="5" />
                 <Setter Property="Template">
                     <Setter.Value>
@@ -554,7 +554,7 @@
                                     Width="20"
                                     Height="20"
                                     Margin="24,0,5,0"
-                                    Source="C:\Users\DEICIDA\source\repos\Cerberus\Resources\Icons\tv32.png" />
+                                    Source="C:\Users\DEICIDA\source\repos\Cerberus\Resources\Icons\tvshow32.png" />
                                 <TextBlock
                                     Grid.Column="3"
                                     VerticalAlignment="Center"
@@ -564,6 +564,39 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+
+            <Style
+                x:Key="LikedVewStyle"
+                BasedOn="{StaticResource MenuButtonTheme}"
+                TargetType="{x:Type RadioButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RadioButton">
+                            <Grid
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="{TemplateBinding Background}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="20"
+                                    Height="20"
+                                    Margin="24,0,5,0"
+                                    Source="C:\Users\DEICIDA\source\repos\Cerberus\Resources\Icons\box32.png" />
+                                <TextBlock
+                                    Grid.Column="3"
+                                    VerticalAlignment="Center"
+                                    Text="{TemplateBinding Content}" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
 
             <Style
                 x:Key="SettingsView"
@@ -1255,6 +1288,10 @@
 
             <DataTemplate DataType="{x:Type viewModel:ShowsViewModel}">
                 <view:ShowsView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:LikedViewModel}">
+                <view:LikedView />
             </DataTemplate>
 
             <Style x:Key="RoundedComboBoxStyle" TargetType="{x:Type ComboBox}">

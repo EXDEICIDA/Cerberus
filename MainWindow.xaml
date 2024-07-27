@@ -9,11 +9,9 @@
     xmlns:viewModel="clr-namespace:Cerberus.MVVM.ViewModel"
     Width="1350"
     Height="750"
-  
     MinWidth="650"
     MinHeight="700"
     AllowsTransparency="True"
-   
     Icon="Resources/Project-icon/movicon.ico"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None">
@@ -32,7 +30,7 @@
         MouseDown="Border_MouseDown"
         MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Border.Background>
-            <LinearGradientBrush   StartPoint="0.5,0" EndPoint="0.5,1">
+            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                 <GradientStop Color="#272537" />
                 <GradientStop Offset="1.0" Color="#272537" />
             </LinearGradientBrush>
@@ -115,7 +113,14 @@
                         FontSize="14"
                         Foreground="White"
                         Style="{StaticResource TvShowView}" />
-                    
+                    <RadioButton
+                        Height="50"
+                        Command="{Binding LikedViewCommand}"
+                        Content="Shows"
+                        FontSize="14"
+                        Foreground="White"
+                        Style="{StaticResource LikedVewStyle}" />
+
                     <RadioButton
                         Height="50"
                         Command="{Binding WatchListViewCommand}"

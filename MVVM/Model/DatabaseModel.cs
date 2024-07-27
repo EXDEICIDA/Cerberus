@@ -280,7 +280,43 @@ namespace Cerberus.MVVM.Model
             }
             return shows;
         }
+
+
+
+
+        //A method for fetching the data in the LikedShows
+        public ObservableCollection<LikedItem> GetAllLikedItems()
+        {
+            var likedItems = new ObservableCollection<LikedItem>();
+            using (var connection = new SQLiteConnection(_connectionString))
+            {
+                connection.Open();
+                string query = "SELECT * FROM LikedShows";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            likedItems.Add(new LikedItem
+                            {
+                                Id = reader.GetInt32(0),
+                                Title = reader.GetString(1),
+                                Poster = reader.GetString(2),
+                                Plot = reader.GetString(3),
+                                Genre = reader.GetString(4),
+                                Decade = reader.GetString(5),
+                                ImdbRating = reader.GetDouble(6)
+                            });
+                        }
+                    }
+                }
+            }
+            return likedItems;
+        }
+
+
     }
 
-   
+
 }

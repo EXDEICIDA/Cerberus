@@ -2,6 +2,7 @@
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -130,4 +131,24 @@ namespace Cerberus.MVVM.Model
         public string ReleaseYear => ReleaseDate?.Year.ToString();
         public string Runtime { get; set; } = string.Empty;
     }
+
+    public class LikedItem : INotifyPropertyChanged
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Poster { get; set; }
+        public string Plot { get; set; }
+        public string Genre { get; set; }
+        public string Decade { get; set; }
+        public double ImdbRating { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+
 }

@@ -23,6 +23,7 @@ namespace Cerberus.MVVM.ViewModel
         public RelayCommand WatchListViewCommand { get; set; }
         public RelayCommand SettingsViewCommand { get; set; }
         public RelayCommand ShowsViewCommand { get; set; }
+        public RelayCommand LikedViewCommand { get; set; }
 
 
 
@@ -35,6 +36,7 @@ namespace Cerberus.MVVM.ViewModel
         public WatchListViewModel WatchListVm { get; set; }
         public SettingsViewModel SettingsVm { get; set; }
         public ShowsViewModel ShowsVm { get; set; }
+        public LikedViewModel LikedVm { get; set; }
 
 
         private object _currentView;
@@ -62,6 +64,7 @@ namespace Cerberus.MVVM.ViewModel
             WatchListVm = new WatchListViewModel();
             SettingsVm = new SettingsViewModel();
             ShowsVm = new ShowsViewModel();
+            LikedVm = new LikedViewModel();
 
           
 
@@ -100,6 +103,11 @@ namespace Cerberus.MVVM.ViewModel
             {
                 CurrentView = ShowsVm;
             
+            });
+
+            LikedViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = LikedVm;
             });
 
 
