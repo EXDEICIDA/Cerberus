@@ -20,6 +20,7 @@
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="LiveCharts.Wpf.NetCore3" Version="0.9.8" />
     <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="5.0.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.6" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="QuestPDF" Version="2024.7.1" />
@@ -29,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Elements\" />
+    <Folder Include="Resources\Languages\" />
   </ItemGroup>
 
   <ItemGroup>

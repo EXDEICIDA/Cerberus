@@ -63,10 +63,7 @@ namespace Cerberus.MVVM.ViewModel
             ApplyFilters();
         }
 
-        private void ExportWatchlist()
-        {
-            // ... (ExportWatchlist method remains unchanged)
-        }
+      
 
         private void ApplyFilters()
         {
@@ -159,6 +156,80 @@ namespace Cerberus.MVVM.ViewModel
         public void Search()
         {
             ApplyFilters();
+        }
+
+
+        private void ExportWatchlist()
+        {
+            try
+            {
+                var document = Document.Create(container =>
+                {
+                    container.Page(page =>
+                    {
+                        page.Size(PageSizes.A4);
+                        page.Margin(2, Unit.Centimetre);
+                        page.DefaultTextStyle(x => x.FontSize(12));
+
+                        // Header with application name and icon
+                        page.Header()
+                            .Row(row =>
+                            {
+                                row.RelativeItem().Text("TrackStar")
+                                    .FontSize(20)
+                                    .Bold()
+                                    .AlignLeft();
+                            });
+
+                        // Content
+                        page.Content()
+                            .Column(column =>
+                            {
+                                foreach (var item in WatchList)
+                                {
+                                    if (item is Movies movie)
+                                    {
+                                        column.Item().Text($"Movie: {movie.Title}").Bold();
+                                        column.Item().Text($"Plot: {movie.Plot}");
+                                        column.Item().Text($"Genre: {movie.Genre}");
+                                        column.Item().Text($"Release Year: {movie.ReleaseYear}");
+                                        column.Item().Text($"IMDb Rating: {movie.ImdbRating}");
+                                        column.Item().Text("");
+                                    }
+                                    else if (item is Show show)
+                                    {
+                                        column.Item().Text($"Show: {show.Title}").Bold();
+                                        column.Item().Text($"Plot: {show.Plot}");
+                                        column.Item().Text($"Genre: {show.Genre}");
+                                        column.Item().Text($"Decade: {show.Decade}");
+                                        column.Item().Text($"IMDb Rating: {show.ImdbRating}");
+                                        column.Item().Text("");
+                                    }
+                                }
+                            });
+
+                        // Footer
+                        page.Footer()
+                            .AlignCenter()
+                            .Text(x =>
+                            {
+                                x.Span("Page ");
+                                x.CurrentPageNumber();
+                                x.Span(" of ");
+                                x.TotalPages();
+                            });
+                    });
+                });
+
+                var filename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Watchlist.pdf");
+                document.GeneratePdf(filename);
+                Process.Start(new ProcessStartInfo(filename) { UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or show an error message
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
 

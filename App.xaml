@@ -20,6 +20,35 @@
 
 
 
+
+            <Style x:Key="TrailerButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="#E50914" />
+                <Setter Property="Foreground" Value="#FFFFFF" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Width" Value="90"></Setter>
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <fa:FontAwesome
+                                        Margin="5,5,5,5"
+                                        FontSize="10"
+                                        Icon="Play" />
+                                    <ContentPresenter />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
             <!--  comboboxstyle  -->
 
             <!--  ComboBoxItem Style  -->

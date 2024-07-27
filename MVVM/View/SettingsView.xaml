@@ -119,8 +119,8 @@
                                 Margin="5,0,0,0"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Center">
-                                <ComboBoxItem Content="Default English" Tag="#778899" />
-                                <ComboBoxItem Content="French" Tag="#272537" />
+                                <ComboBoxItem Content="English" Tag="en" />
+                                <ComboBoxItem Content="Français" Tag="fr" />
                             </ComboBox>
                         </Grid>
                     </StackPanel>

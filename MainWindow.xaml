@@ -97,7 +97,7 @@
                     <RadioButton
                         Height="50"
                         Command="{Binding FeaturedViewCommand}"
-                        Content="Discover"
+                        Content="Featured"
                         FontSize="14"
                         Foreground="White"
                         Style="{StaticResource Discover}" />
@@ -115,6 +115,7 @@
                         FontSize="14"
                         Foreground="White"
                         Style="{StaticResource TvShowView}" />
+                    
                     <RadioButton
                         Height="50"
                         Command="{Binding WatchListViewCommand}"
