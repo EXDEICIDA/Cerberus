@@ -116,7 +116,7 @@
                     <RadioButton
                         Height="50"
                         Command="{Binding LikedViewCommand}"
-                        Content="Shows"
+                        Content="My Stuff"
                         FontSize="14"
                         Foreground="White"
                         Style="{StaticResource LikedVewStyle}" />
