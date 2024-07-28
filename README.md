@@ -1,6 +1,6 @@
 # TrackStar App
 
-![TrackStar Logo](path/to/logo.png)
+![TrackStar Logo](SHOWCASE/Liceria_.png)
 
 ## Table of Contents
 1. [Introduction](#introduction)
