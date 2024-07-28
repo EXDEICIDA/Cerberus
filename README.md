@@ -1,5 +1,3 @@
-Certainly, I'd be happy to help you adjust and expand the README file. I'll correct the spelling errors, organize the content, and place the pictures below each feature accordingly. Here's the revised and expanded version:
-
 # TrackStar App
 
 ![TrackStar Logo](SHOWCASE/Liceria_.png)
