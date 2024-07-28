@@ -21,7 +21,9 @@ TrackStar is your ultimate companion for tracking movies and TV series. Whether 
 ![App Overview](SHOWCASE/Watchlist.png)
 ![App Overview](SHOWCASE/Watchlist.png)
 ![App Overview](SHOWCASE/LikedView.png)
-
+![App Overview](SHOWCASE/Settings.png)
+![App Overvie](SHOWCASE/ShowsView.png)
+![App Overvie](SHOWCASE/FeaturedView.png)
 
 
 
@@ -30,11 +32,14 @@ TrackStar is your ultimate companion for tracking movies and TV series. Whether 
 
 - **Comprehensive Watchlist Management**: Easily add, remove, and organize movies and TV shows in your watchlist.
   
-- **Progress Tracking**: Keep track of which episodes you've watched and where you left off in each series.
-- **Smart Recommendations**: Get personalized recommendations based on your viewing history and preferences.
+- **Progress And  Statistics**: Keep track of which genres you've watched.
+- **Marking Favorite Shows and Movies **:Getting all the details about them.
 - **Detailed Information**: Access comprehensive details about movies and TV shows, including cast, crew, ratings,epsiodes, and reviews.
 - **Search Functionality**: Quickly find movies and TV shows with our powerful search feature.
 - **User-friendly Interface**: Enjoy a sleek, intuitive design that makes navigation a breeze.
+- **Access To Latest Movies/Seres Metadata**: Acces to latest tv series and movies get a senak peek and trailers links.
+- **Language Support And Dark Mode**: Use Dark Mode and Aditional Langauge support.
+- 
 
   Usage
 
@@ -55,4 +60,9 @@ Discovering New Content:
 
 Check the 'Recommended' tab for personalized suggestions.
 Explore 'Popular' and 'Trending' sections for crowd favorites.
+
+
+
+technologies usedd 
+.net c#  visual studio  wpf winsows fpudnation presentions framwroks  live charts font awesome  apis used  tmbd api tv amze api omdb api 
 
