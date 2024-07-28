@@ -32,10 +32,9 @@ TrackStar is your ultimate companion for tracking movies and TV series. Whether 
   
 - **Progress Tracking**: Keep track of which episodes you've watched and where you left off in each series.
 - **Smart Recommendations**: Get personalized recommendations based on your viewing history and preferences.
-- **Detailed Information**: Access comprehensive details about movies and TV shows, including cast, crew, ratings, and reviews.
+- **Detailed Information**: Access comprehensive details about movies and TV shows, including cast, crew, ratings,epsiodes, and reviews.
 - **Search Functionality**: Quickly find movies and TV shows with our powerful search feature.
 - **User-friendly Interface**: Enjoy a sleek, intuitive design that makes navigation a breeze.
-- **Cross-platform Sync**: Keep your watchlist and progress synced across all your devices.
 
   Usage
 
