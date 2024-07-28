@@ -98,6 +98,5 @@ This project is licensed under the [MIT License](LICENSE.md).
 
 ## Contact
 
-For any questions or support, please contact us at [support@trackstar.com](mailto:support@trackstar.com).
+For inquiries or support, you can reach out to us at [javadsoltanov@gmail.com](mailto:javadsoltanov@gmail.com).
 
-Would you like me to explain or break down any part of this README file?
