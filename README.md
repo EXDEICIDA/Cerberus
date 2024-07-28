@@ -47,7 +47,7 @@ TrackStar is your ultimate companion for tracking movies and TV series. Whether 
    ![Featured View](SHOWCASE/FeaturedView.png)
 8. **Access to Latest Movies**: Get access to the latest movies, metadata and informations.
 
-   ![Featured View](SHOWCASE/MoviesView.png)
+   ![Movies View](SHOWCASE/MovieView.png)
       
    
 
