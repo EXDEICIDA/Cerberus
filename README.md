@@ -25,7 +25,7 @@ TrackStar is your ultimate companion for tracking movies and TV series. Whether 
 
 2. **Progress and Statistics**: Keep track of which genres you've watched and view your viewing statistics.
 
-   ![Statistics](SHOWCASE/Watchlist.png)
+   ![Statistics](SHOWCASE/stats.png)
 
 3. **Marking Favorite Shows and Movies**: Highlight your favorite content and access all the details about them.
 
