@@ -7,10 +7,9 @@
 2. [Features](#features)
 3. [Technologies Used](#technologies-used)
 4. [Usage](#usage)
-5. [Screenshots](#screenshots)
 6. [Contributing](#contributing)
-7. [License](#license)
-8. [Contact](#contact)
+6. [License](#license)
+7. [Contact](#contact)
 
 ## Introduction
 
@@ -71,19 +70,17 @@ APIs Used:
 1. **Adding Content**: 
    - Use the search bar to find movies or TV shows. 
    - Click the '+' button to add items to your watchlist.
+   - Click the hart button if the show/movie is your favorite.
 
 2. **Tracking Progress**: 
-   - Navigate to your watchlist. 
-   - For TV shows, mark episodes as watched. 
-   - For movies, mark them as watched once completed.
+   - As you add up movies/series app will automatically track the genres you watch. 
+   - For TV shows, mark the show for watchlist/favorite.
+   - For movies, mark them afor watchlist/favorite.
 
 3. **Discovering New Content**: 
    - Check the 'Recommended' tab for personalized suggestions. 
    - Explore 'Popular' and 'Trending' sections for crowd favorites.
 
-## Screenshots
-
-(You can add more screenshots here if needed)
 
 ## Contributing
 
