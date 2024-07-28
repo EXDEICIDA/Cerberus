@@ -18,6 +18,8 @@
 TrackStar is your ultimate companion for tracking movies and TV series. Whether you're a casual viewer or a dedicated binge-watcher, TrackStar helps you manage your watchlist, track your viewing progress, and discover new content tailored to your tastes.
 
 ![App Overview](SHOWCASE/Home.png)
+![App Overview](SHOWCASE/Watchlist)
+
 
 ## Features
 
