@@ -45,8 +45,13 @@ TrackStar is your ultimate companion for tracking movies and TV series. Whether 
 7. **Access to Latest Movies/Series Metadata**: Get access to the latest TV series and movies, including sneak peeks and trailer links.
 
    ![Featured View](SHOWCASE/FeaturedView.png)
+8. **Access to Latest Movies**: Get access to the latest movies, metadata and informations.
 
-8. **Language Support and Dark Mode**: Use Dark Mode and enjoy additional language support for a customized experience.
+   ![Featured View](SHOWCASE/MoviesView.png)
+      
+   
+
+9. **Language Support and Dark Mode**: Use Dark Mode and enjoy additional language support for a customized experience.
 
 ## Technologies Used
 
