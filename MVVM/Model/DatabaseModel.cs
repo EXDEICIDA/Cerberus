@@ -9,7 +9,7 @@ namespace Cerberus.MVVM.Model
     {
         private readonly string _connectionString;
 
-        public DatabaseModel(string databaseFilePath = @"C:\Users\DEICIDA\source\repos\Cerberus\MVVM\Model\AppServices.db")
+        public DatabaseModel(string databaseFilePath = @"C:\Users\XXX\source\repos\Cerberus\MVVM\Model\AppServices.db")
         {
             string databasePath = Path.GetFullPath(databaseFilePath);
 
