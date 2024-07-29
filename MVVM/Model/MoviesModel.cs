@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -45,6 +45,7 @@ namespace Cerberus.MVVM.Model
             if (response.IsSuccessful)
             {
                 var movie = JsonConvert.DeserializeObject<Movie>(response.Content);
+                var releaseDate = DateTime.TryParse(movie.Released, out var parsedDate) ? parsedDate : (DateTime?)null;
                 return new Movies
                 {
                     Id = movie.ImdbID,
@@ -57,13 +58,13 @@ namespace Cerberus.MVVM.Model
                     Language = movie.Language,
                     Country = movie.Country,
                     Rated = movie.Rated,
-                    ReleaseDate = DateTime.TryParse(movie.Released, out var releaseDate) ? releaseDate : (DateTime?)null,
+                    ReleaseDate = releaseDate,
+                    ReleaseYear = releaseDate?.Year ?? 0,
                     ImdbRating = double.TryParse(movie.ImdbRating, out var rating) ? rating : 0
                 };
             }
             return null;
         }
-
         public class MovieSearchResult
         {
             [JsonProperty("Search")]
@@ -120,15 +121,13 @@ namespace Cerberus.MVVM.Model
         public string Poster { get; set; } = string.Empty;
         public string Plot { get; set; } = string.Empty;
         public string Genre { get; set; } = string.Empty;
-        public DateTime? ReleaseDate { get; set; }
         public double ImdbRating { get; set; }
         public string Director { get; set; }
         public string Language { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
         public string Rated { get; set; } = string.Empty;
-
-        [JsonIgnore]
-        public string ReleaseYear => ReleaseDate?.Year.ToString();
+        public int ReleaseYear { get; set; }
+        public DateTime? ReleaseDate { get; set; }
         public string Runtime { get; set; } = string.Empty;
     }
 
