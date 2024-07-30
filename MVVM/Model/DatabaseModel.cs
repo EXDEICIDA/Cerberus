@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.Data.SQLite;
 using System.IO;
@@ -9,9 +9,13 @@ namespace Cerberus.MVVM.Model
     {
         private readonly string _connectionString;
 
-        public DatabaseModel(string databaseFilePath = @"C:\Users\XXX\source\repos\Cerberus\MVVM\Model\AppServices.db")
+        public DatabaseModel(string databaseFileName = "AppServices.db")
         {
-            string databasePath = Path.GetFullPath(databaseFilePath);
+            string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string appFolder = Path.Combine(appDataPath, "Cerberus");
+            string databasePath = Path.Combine(appFolder, databaseFileName);
+
+            Directory.CreateDirectory(appFolder);
 
             _connectionString = $"Data Source={databasePath};Version=3;";
 
@@ -26,11 +30,12 @@ namespace Cerberus.MVVM.Model
                 try
                 {
                     SQLiteConnection.CreateFile(databasePath);
+                    Console.WriteLine($"Database file created at: {databasePath}");
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"Error creating database file: {ex.Message}");
-                    throw; // Propagate the exception
+                    throw;
                 }
             }
 
@@ -39,6 +44,8 @@ namespace Cerberus.MVVM.Model
                 try
                 {
                     connection.Open();
+                    Console.WriteLine("Database connection opened successfully.");
+
 
                     //  Shows table
                     string createShowsTableQuery = @"CREATE TABLE IF NOT EXISTS Shows (
@@ -81,6 +88,7 @@ namespace Cerberus.MVVM.Model
                     {
                         command.ExecuteNonQuery();
                     }
+                    Console.WriteLine("Database tables created successfully.");
                 }
                 catch (Exception ex)
                 {
@@ -95,19 +103,19 @@ namespace Cerberus.MVVM.Model
         //This is an Insertion method created for writing the selected movie to the database
         public void InsertMovie(Movies movie)
         {
-            using(var connection = new SQLiteConnection(_connectionString))
+            using (var connection = new SQLiteConnection(_connectionString))
             {
                 try
                 {
                     connection.Open();
-                    string insertQuery = "Insert Into Movies (Title, Poster, Plot, Genre, Decade, ImdbRating) VALUES (@Title, @Poster, @Plot, @Genre, @Decade, @ImdbRating)";
+                    string insertQuery = "INSERT INTO Movies (Title, Poster, Plot, Genre, ReleaseYear, ImdbRating) VALUES (@Title, @Poster, @Plot, @Genre, @ReleaseYear, @ImdbRating)";
                     using (var command = new SQLiteCommand(insertQuery, connection))
                     {
-                        command.Parameters.AddWithValue("@Title",movie.Title);
+                        command.Parameters.AddWithValue("@Title", movie.Title);
                         command.Parameters.AddWithValue("@Poster", movie.Poster);
                         command.Parameters.AddWithValue("@Plot", movie.Plot);
                         command.Parameters.AddWithValue("@Genre", movie.Genre);
-                        command.Parameters.AddWithValue("@Decade", movie.ReleaseYear);
+                        command.Parameters.AddWithValue("@ReleaseYear", movie.ReleaseYear);
                         command.Parameters.AddWithValue("@ImdbRating", movie.ImdbRating);
                         command.ExecuteNonQuery();
                     }
@@ -117,7 +125,6 @@ namespace Cerberus.MVVM.Model
                     Console.WriteLine($"Error inserting movie into database: {ex.Message}");
                     throw;
                 }
-
             }
         }
 
@@ -208,7 +215,6 @@ namespace Cerberus.MVVM.Model
         public ObservableCollection<Movies> GetAllMovies()
         {
             var movies = new ObservableCollection<Movies>();
-
             using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
@@ -223,10 +229,10 @@ namespace Cerberus.MVVM.Model
                             {
                                 Id = reader.GetInt32(0).ToString(),
                                 Title = reader.GetString(1),
-                                Poster = reader.GetString(2),
-                                Plot = reader.GetString(3),
-                                Genre = reader.GetString(4),
-                                ReleaseDate = reader.IsDBNull(5) ? (DateTime?)null : ConvertYearToDateTime(reader.GetString(5)),
+                                Poster = reader.IsDBNull(2) ? null : reader.GetString(2),
+                                Plot = reader.IsDBNull(3) ? null : reader.GetString(3),
+                                Genre = reader.IsDBNull(4) ? null : reader.GetString(4),
+                                ReleaseYear = reader.IsDBNull(5) ? 0 : reader.GetInt32(5),
                                 ImdbRating = reader.IsDBNull(6) ? 0 : reader.GetDouble(6)
                             };
                             movies.Add(movie);
@@ -234,7 +240,6 @@ namespace Cerberus.MVVM.Model
                     }
                 }
             }
-
             return movies;
         }
 
